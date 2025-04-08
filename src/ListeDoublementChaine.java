@@ -357,7 +357,21 @@ public class ListeDoublementChaine< E >
      * @return La liste des éléments qui ont donnés True.
      */
     public ListeDoublementChaine< E > extraireSi( Predicate< E > condition ) {
-        return null;
+        Iterator< E > iterator = iterator();
+        ListeDoublementChaine <E> elementsExtraits = new ListeDoublementChaine<>();
+        int i = 0;
+
+        while( iterator.hasNext() ) {
+            E element = iterator.next();
+
+            if(condition.test(element)) {
+                supprimer(i);
+                elementsExtraits.inserer( element );
+                --i;
+            }
+            ++i;
+        }
+        return elementsExtraits;
     }
 
 
@@ -371,7 +385,20 @@ public class ListeDoublementChaine< E >
      * en paramètre.  False sinon.
      */
     public boolean sousEnsembleEgal( ListeDoublementChaine< E > droite ) {
-        return false;
+        boolean estSousEnsemble = true;
+        Iterator< E > iterator = iterator();
+        while( estSousEnsemble && iterator.hasNext()) {
+            E element = iterator.next();
+            Iterator< E > droiteIterator = droite.iterator();
+            boolean trouve = false;
+            while( droiteIterator.hasNext() ) {
+                if( element.equals( droiteIterator.next() ) ) {
+                    trouve = true;
+                }
+            }
+            estSousEnsemble = trouve;
+        }
+        return estSousEnsemble;
     }
 
 
@@ -391,7 +418,27 @@ public class ListeDoublementChaine< E >
      * @return True si la liste est divisé selon la condition en paramètre.
      */
     public boolean estDiviseSelon( Predicate< E > condition ) {
-        return false;
+        boolean result = true;
+        if(taille > 1) {
+            Iterator< E > iterator = iterator();
+            E element = iterator.next();
+
+            boolean last = condition.test( element );
+            int changement = 0;
+
+            while( iterator.hasNext()) {
+                boolean current = condition.test(iterator.next());
+                if( current != last ) {
+                    last = current;
+                    ++changement;
+                }
+            }
+
+            if(changement > 1){
+                result = false;
+            }
+        }
+        return result;
     }
 
 
@@ -408,5 +455,11 @@ public class ListeDoublementChaine< E >
      *                  Le comportement de la méthode n'est pas défini si ce paramètre est {\code null}.
      */
     public void diviserSelon( Predicate< E > condition ) {
+        ListeDoublementChaine<E> avant = extraireSi( condition );
+        int i = 0;
+        for(E element : avant){
+            inserer( i, element );
+            ++i;
+        }
     }
 }
