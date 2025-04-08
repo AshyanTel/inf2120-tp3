@@ -2,14 +2,12 @@
 
 ## 1 INTRODUCTION
 
----
 Pour le troisième TP, vous allez compléter le code d’une liste chainée. Vous allez chercher le code de
 `ListeDoublementChaine.java` (disponible avec l’énoncé). Vous devrez compléter le code pour 4
 méthodes. Vous aurez accès à un fichier de tests unitaires pour vérifier la fonctionnalité du code.
 
 ## 2 DESCRIPTION
 
----
 Sur le site Moodle du cours, vous allez trouver deux fichiers de code.
 - `ListeDoublementChaine.java` : contiens le code de la classe `ListeDoublementChaine`.
 Cette classe a quatre méthodes à compléter :
@@ -69,13 +67,10 @@ Le fichier de tests unitaires utilise la librairie JUnit 5.
    
 ## 4 REMISE
 
----
   Remettre le TP par l’entremise de Moodle. Remettez seulement votre fichier
   `ListeDoublementChaine.java`. Le TP est à remettre avant le 25 avril 23:59. 
   
 ## 5 ÉVALUATION
-
----
 
   - Fonctionnalité (10 pts) : Les tests unitaires seront utilisés pour vérifier le fonctionnement de
   votre TP. Pour que les tests soient comptés, il faut que les méthodes aient du code qui essaie de
